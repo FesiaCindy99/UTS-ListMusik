@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
     ImageView btnLogout;
+    Session session;
     private static final String LOG_TAG = Main2Activity.class.getSimpleName();
 
     @Override
@@ -19,9 +20,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickLogout( View view ) {
         Log.d(LOG_TAG, "Logout");
+
+        session = new Session(this);
+
+        session.saveSPBoolean(Session.SP_SUDAH_LOGIN, false);
+
         startActivity(new Intent(this,Main2Activity.class)
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-        finish();;
+        finish();
     }
 
     public void openMusic(View view){
